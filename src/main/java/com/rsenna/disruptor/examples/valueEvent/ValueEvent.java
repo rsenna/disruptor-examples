@@ -1,4 +1,4 @@
-package com.rsenna.disruptor.examples.valueEvent;
+package com.rsenna.disruptor.examples.valueevent;
 
 import com.lmax.disruptor.EventFactory;
 

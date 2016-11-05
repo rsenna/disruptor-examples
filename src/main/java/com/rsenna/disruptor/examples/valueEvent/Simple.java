@@ -1,25 +1,26 @@
-package com.rsenna.disruptor.examples.valueEvent;
+package com.rsenna.disruptor.examples.valueevent;
 
 import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+@Slf4j
 public class Simple {
+    private Simple() {}
+
     @SuppressWarnings("unchecked")
     public static void main(String[] args) {
         ExecutorService exec = Executors.newCachedThreadPool();
         // Preallocate RingBuffer with 1024 ValueEvents
-        Disruptor<ValueEvent> disruptor = new Disruptor<ValueEvent>(ValueEvent.EVENT_FACTORY, 1024, exec);
-        final EventHandler<ValueEvent> handler = new EventHandler<ValueEvent>() {
-            // event will eventually be recycled by the Disruptor after it wraps
-            public void onEvent(final ValueEvent event, final long sequence, final boolean endOfBatch) throws Exception {
-                System.out.println("Sequence: " + sequence);
-                System.out.println("ValueEvent: " + event.getValue());
-            }
+        Disruptor<ValueEvent> disruptor = new Disruptor<>(ValueEvent.EVENT_FACTORY, 1024, exec);
+        final EventHandler<ValueEvent> handler = (event, sequence, endOfBatch) -> {
+            log.info("Sequence: " + sequence);
+            log.info("ValueEvent: " + event.getValue());
         };
         // Build dependency graph
         disruptor.handleEventsWith(handler);
