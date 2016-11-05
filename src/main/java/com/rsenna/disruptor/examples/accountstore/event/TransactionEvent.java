@@ -1,4 +1,4 @@
-package com.rsenna.disruptor.examples.accountstore.disruptor.event;
+package com.rsenna.disruptor.examples.accountstore.event;
 
 import com.lmax.disruptor.EventFactory;
 import com.rsenna.disruptor.examples.accountstore.model.Transaction;

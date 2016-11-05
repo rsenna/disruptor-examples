@@ -31,7 +31,7 @@ task runValueEvent(type: JavaExec) {
 
 task runAccountStore(type: JavaExec) {
     classpath sourceSets.main.runtimeClasspath
-    main = "com.rsenna.disruptor.examples.accountstore.disruptor.App"
+    main = "com.rsenna.disruptor.examples.accountstore.App"
 }
 
 compileJava {

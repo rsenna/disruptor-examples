@@ -1,7 +1,7 @@
-package com.rsenna.disruptor.examples.accountstore.disruptor.handler;
+package com.rsenna.disruptor.examples.accountstore.handler;
 
 import com.lmax.disruptor.EventHandler;
-import com.rsenna.disruptor.examples.accountstore.disruptor.event.TransactionEvent;
+import com.rsenna.disruptor.examples.accountstore.event.TransactionEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ import java.io.IOException;
 public class JournalTransactionHandler implements EventHandler<TransactionEvent> {
     private static final Logger logger = LoggerFactory.getLogger(JournalTransactionHandler.class);
     private FileWriter journal;
-    
+
     public JournalTransactionHandler(File journalFile) {
         try {
             this.journal = new FileWriter(journalFile, true);
@@ -28,7 +28,7 @@ public class JournalTransactionHandler implements EventHandler<TransactionEvent>
             throw new IllegalStateException(ex);
         }
     }
-    
+
     public void closeJournal() throws IOException {
         if (journal!=null) {
             journal.flush();

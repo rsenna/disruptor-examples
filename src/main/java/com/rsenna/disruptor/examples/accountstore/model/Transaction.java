@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Example transaction, simple for demo only, sign of amount determines 
+ * Example transaction, simple for demo only, sign of amount determines
  * directionality when applied to balances. In the real world, we might
  * choose to enforce immutability on such objects.
  */
@@ -52,7 +52,7 @@ public class Transaction {
     public void setType(String type) {
         this.type = type;
     }
-    
+
     @Override
     public String toString() {
         return String.format("%s [%s] %s %s", date, type, accountNumber, amount);

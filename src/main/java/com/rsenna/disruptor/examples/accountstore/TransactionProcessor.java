@@ -1,16 +1,15 @@
-package com.rsenna.disruptor.examples.accountstore.disruptor;
+package com.rsenna.disruptor.examples.accountstore;
 
 import com.lmax.disruptor.EventTranslator;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.YieldingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
-import com.rsenna.disruptor.examples.accountstore.AccountStore;
-import com.rsenna.disruptor.examples.accountstore.disruptor.event.TransactionEvent;
-import com.rsenna.disruptor.examples.accountstore.disruptor.handler.GenericExceptionHandler;
-import com.rsenna.disruptor.examples.accountstore.disruptor.handler.JournalTransactionHandler;
-import com.rsenna.disruptor.examples.accountstore.disruptor.handler.PostTransactionHandler;
-import com.rsenna.disruptor.examples.accountstore.disruptor.handler.ReplicateTransactionHandler;
+import com.rsenna.disruptor.examples.accountstore.event.TransactionEvent;
+import com.rsenna.disruptor.examples.accountstore.handler.GenericExceptionHandler;
+import com.rsenna.disruptor.examples.accountstore.handler.JournalTransactionHandler;
+import com.rsenna.disruptor.examples.accountstore.handler.PostTransactionHandler;
+import com.rsenna.disruptor.examples.accountstore.handler.ReplicateTransactionHandler;
 import com.rsenna.disruptor.examples.accountstore.model.Transaction;
 import lombok.extern.slf4j.Slf4j;
 

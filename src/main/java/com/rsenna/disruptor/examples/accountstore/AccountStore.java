@@ -49,22 +49,26 @@ public class AccountStore {
 
             String line;
             while ((line = reader.readLine()) != null) {
-                if (!"".equals(line)) {
-                    String[] attrs = line.split("\\|");
-                    // 0 - sequence (long)
-                    // 1 - date     (long)
-                    // 2 - account  (String)
-                    // 3 - type     (String)
-                    // 4 - amount   (BigDecimal)
-                    final Date date = new Date(Long.parseLong(attrs[1]));
-                    final BigDecimal amount = new BigDecimal(attrs[4]);
-                    Transaction t = new Transaction(date, amount, attrs[2], attrs[3]);
-                    Account act = getAccount(t.getAccountNumber())
-                            .orElse(new Account(t.getAccountNumber()));
-
-                    act.post(t);
-                    saveAccount(act);
+                if (line.isEmpty()) {
+                    continue;
                 }
+
+                final String[] attrs = line.split("\\|");
+                final Date date = new Date(Long.parseLong(attrs[1]));
+                final BigDecimal amount = new BigDecimal(attrs[4]);
+
+                // 0 - sequence (long)
+                // 1 - date     (long)
+                // 2 - account  (String)
+                // 3 - type     (String)
+                // 4 - amount   (BigDecimal)
+                Transaction t = new Transaction(date, amount, attrs[2], attrs[3]);
+
+                Account act = getAccount(t.getAccountNumber())
+                        .orElse(new Account(t.getAccountNumber()));
+
+                act.post(t);
+                saveAccount(act);
             }
         }
     }

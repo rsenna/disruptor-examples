@@ -1,7 +1,7 @@
-package com.rsenna.disruptor.examples.accountstore.disruptor.handler;
+package com.rsenna.disruptor.examples.accountstore.handler;
 
 import com.lmax.disruptor.EventHandler;
-import com.rsenna.disruptor.examples.accountstore.disruptor.event.TransactionEvent;
+import com.rsenna.disruptor.examples.accountstore.event.TransactionEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
