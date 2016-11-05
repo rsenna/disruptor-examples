@@ -4,16 +4,15 @@ import com.lmax.disruptor.EventHandler;
 import com.rsenna.disruptor.examples.accountstore.AccountStore;
 import com.rsenna.disruptor.examples.accountstore.event.TransactionEvent;
 import com.rsenna.disruptor.examples.accountstore.model.Account;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * This handler uses the event to update the in-memory data store. Operations on 
+ * This handler uses the event to update the in-memory data store. Operations on
  * this store always happen in a single thread, so concurrency issues are non-
- * existent for these updates. 
+ * existent for these updates.
  */
+@Slf4j
 public class PostTransactionHandler implements EventHandler<TransactionEvent> {
-    private static final Logger logger = LoggerFactory.getLogger(PostTransactionHandler.class);
     private AccountStore accountStore;
 
     public PostTransactionHandler(AccountStore accountStore) {
@@ -29,6 +28,6 @@ public class PostTransactionHandler implements EventHandler<TransactionEvent> {
         act.post(event.getTransaction());
         accountStore.saveAccount(act);
 
-        logger.debug("POSTED TRANSACTION -> {}", event.getTransaction().toString());
+        log.debug("POSTED TRANSACTION -> {}", event.getTransaction().toString());
     }
 }

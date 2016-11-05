@@ -1,8 +1,7 @@
 package com.rsenna.disruptor.examples.accountstore.handler;
 
 import com.lmax.disruptor.ExceptionHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Any un-handled or thrown exception in processing by an event handler will
@@ -11,18 +10,17 @@ import org.slf4j.LoggerFactory;
  * action. For example, if posting failed after journaling and replication,
  * we might issue compensating journal and replication events.
  */
+@Slf4j
 public class GenericExceptionHandler implements ExceptionHandler<Object> {
-    private static final Logger logger = LoggerFactory.getLogger(GenericExceptionHandler.class);
-
     public void handleEventException(Throwable ex, long sequence, Object event) {
-        logger.error("Caught unhandled exception while processing: "+event.toString(), ex);
+        log.error("Caught unhandled exception while processing: "+event.toString(), ex);
     }
 
     public void handleOnStartException(Throwable ex) {
-        logger.error("Unexpected exception during startup.", ex);
+        log.error("Unexpected exception during startup.", ex);
     }
 
     public void handleOnShutdownException(Throwable ex) {
-        logger.error("Unexpected exception during shutdown.", ex);
+        log.error("Unexpected exception during shutdown.", ex);
     }
 }

@@ -3,8 +3,6 @@ package com.rsenna.disruptor.examples.accountstore.handler;
 import com.lmax.disruptor.EventHandler;
 import com.rsenna.disruptor.examples.accountstore.event.TransactionEvent;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -18,7 +16,6 @@ import java.io.IOException;
  */
 @Slf4j
 public class JournalTransactionHandler implements EventHandler<TransactionEvent> {
-    private static final Logger logger = LoggerFactory.getLogger(JournalTransactionHandler.class);
     private FileWriter journal;
 
     public JournalTransactionHandler(File journalFile) {
@@ -40,6 +37,6 @@ public class JournalTransactionHandler implements EventHandler<TransactionEvent>
     public void onEvent(TransactionEvent event, long sequence, boolean endOfBatch) throws Exception {
         journal.write(event.asJournalEntry());
         journal.flush();
-        logger.debug("JOURNALED TRANSACTION -> {}", event.getTransaction().toString());
+        log.debug("JOURNALED TRANSACTION -> {}", event.getTransaction().toString());
     }
 }

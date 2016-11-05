@@ -2,18 +2,16 @@ package com.rsenna.disruptor.examples.accountstore.handler;
 
 import com.lmax.disruptor.EventHandler;
 import com.rsenna.disruptor.examples.accountstore.event.TransactionEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * In the real world, this handler would replicate the transaction event to in-memory 
+ * In the real world, this handler would replicate the transaction event to in-memory
  * date stores running on one or more other nodes as part of a redundancy strategy.
  */
+@Slf4j
 public class ReplicateTransactionHandler implements EventHandler<TransactionEvent> {
-    private static final Logger logger = LoggerFactory.getLogger(ReplicateTransactionHandler.class);
-
     @Override
     public void onEvent(TransactionEvent event, long sequence, boolean endOfBatch) throws Exception {
-        logger.warn("TODO: REPLICATE -> {}", event.getTransaction().toString());
+        log.warn("TODO: REPLICATE -> {}", event.getTransaction().toString());
     }
 }

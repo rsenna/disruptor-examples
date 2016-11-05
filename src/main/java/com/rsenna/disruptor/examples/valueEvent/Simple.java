@@ -16,12 +16,14 @@ public class Simple {
     @SuppressWarnings("unchecked")
     public static void main(String[] args) {
         ExecutorService exec = Executors.newCachedThreadPool();
+
         // Preallocate RingBuffer with 1024 ValueEvents
         Disruptor<ValueEvent> disruptor = new Disruptor<>(ValueEvent.EVENT_FACTORY, 1024, exec);
         final EventHandler<ValueEvent> handler = (event, sequence, endOfBatch) -> {
             log.info("Sequence: " + sequence);
             log.info("ValueEvent: " + event.getValue());
         };
+
         // Build dependency graph
         disruptor.handleEventsWith(handler);
         RingBuffer<ValueEvent> ringBuffer = disruptor.start();
@@ -34,6 +36,7 @@ public class Simple {
             valueEvent.setValue(uuid);
             ringBuffer.publish(seq);
         }
+
         disruptor.shutdown();
         exec.shutdown();
     }
