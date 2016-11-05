@@ -29,6 +29,11 @@ task runValueEvent(type: JavaExec) {
     main = "com.rsenna.disruptor.examples.valueevent.Simple"
 }
 
+task runAccountStore(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "com.rsenna.disruptor.examples.accountstore.disruptor.App"
+}
+
 compileJava {
     options.compilerArgs << "-Xlint:all" << "-Xlint:-processing" << "-Werror"
 }
