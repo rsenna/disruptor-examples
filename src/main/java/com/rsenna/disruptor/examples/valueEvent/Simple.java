@@ -1,12 +1,12 @@
-package com.trevorbernard.disruptor.examples;
-
-import java.util.UUID;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+package com.rsenna.disruptor.examples.valueEvent;
 
 import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
+
+import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Simple {
     @SuppressWarnings("unchecked")
