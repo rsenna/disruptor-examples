@@ -12,8 +12,8 @@ import com.rsenna.disruptor.examples.accountstore.handler.ReplicateTransactionHa
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 
 
 /**
@@ -45,7 +45,7 @@ import java.util.concurrent.Executors;
  */
 @Slf4j
 public class TransactionProcessor implements AutoCloseable {
-    private static final ExecutorService EXECUTOR = Executors.newFixedThreadPool(4);
+    private static final ThreadFactory threadFactory = Executors.defaultThreadFactory();
 
     private Disruptor<TransactionEvent> disruptor;
     private RingBuffer<TransactionEvent> ringBuffer;
@@ -64,7 +64,7 @@ public class TransactionProcessor implements AutoCloseable {
         disruptor = new Disruptor<>(
                 TransactionEvent.EVENT_FACTORY,
                 1024,
-                EXECUTOR,
+                threadFactory,
                 ProducerType.SINGLE,
                 new YieldingWaitStrategy());
 
@@ -114,7 +114,5 @@ public class TransactionProcessor implements AutoCloseable {
         } catch (Exception ignored) {
             log.error(ignored.getMessage(), ignored);
         }
-
-        EXECUTOR.shutdownNow();
     }
 }

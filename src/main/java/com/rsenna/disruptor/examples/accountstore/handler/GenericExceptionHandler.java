@@ -13,8 +13,9 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class GenericExceptionHandler implements ExceptionHandler<TransactionEvent> {
+    @Override
     public void handleEventException(Throwable ex, long sequence, TransactionEvent event) {
-        log.error("Caught unhandled exception while processing: "+event.toString(), ex);
+        log.error("Caught unhandled exception while processing: " + event, ex);
     }
 
     @Override
