@@ -1,7 +1,6 @@
-package com.rsenna.disruptor.examples.accountstore;
+package com.rsenna.disruptor.examples.accountstore.account;
 
-import com.rsenna.disruptor.examples.accountstore.model.Account;
-import com.rsenna.disruptor.examples.accountstore.model.Transaction;
+import com.rsenna.disruptor.examples.accountstore.transaction.Transaction;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
@@ -22,8 +21,7 @@ import java.util.Optional;
  */
 @Slf4j
 public class AccountStore {
-
-    Map<String, Account> store = new HashMap<>();
+    private Map<String, Account> store = new HashMap<>();
 
     public Optional<Account> getAccount(String accountNumber) {
         return Optional.ofNullable(store.get(accountNumber));

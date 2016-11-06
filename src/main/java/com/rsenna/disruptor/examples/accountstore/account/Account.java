@@ -1,4 +1,7 @@
-package com.rsenna.disruptor.examples.accountstore.model;
+package com.rsenna.disruptor.examples.accountstore.account;
+
+import com.rsenna.disruptor.examples.accountstore.transaction.Transaction;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -7,6 +10,7 @@ import java.util.List;
 /**
  * Example account, for demo purposes.
  */
+@Getter
 public class Account {
     private String accountNumber;
     private List<Transaction> history = new ArrayList<>();
@@ -16,32 +20,23 @@ public class Account {
         this.accountNumber = accountNumber;
     }
 
-    public String getAccountNumber() {
-        return accountNumber;
-    }
-
     public void post(Transaction transaction) {
         balance = balance.add(transaction.getAmount());
         history.add(transaction);
     }
 
-    public List<Transaction> getHistory() {
-        return history;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
+
         builder.append(String.format("Account: %s -- Balance: %s %n", accountNumber, balance));
         builder.append("Transactions: " + System.lineSeparator());
+
         for (Transaction t: history) {
             builder.append(t.toString());
             builder.append(System.lineSeparator());
         }
+
         return builder.toString();
     }
 }

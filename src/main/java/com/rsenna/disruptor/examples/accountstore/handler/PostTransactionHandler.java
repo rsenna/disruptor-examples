@@ -1,13 +1,13 @@
 package com.rsenna.disruptor.examples.accountstore.handler;
 
 import com.lmax.disruptor.EventHandler;
-import com.rsenna.disruptor.examples.accountstore.AccountStore;
-import com.rsenna.disruptor.examples.accountstore.event.TransactionEvent;
-import com.rsenna.disruptor.examples.accountstore.model.Account;
+import com.rsenna.disruptor.examples.accountstore.account.AccountStore;
+import com.rsenna.disruptor.examples.accountstore.transaction.TransactionEvent;
+import com.rsenna.disruptor.examples.accountstore.account.Account;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * This handler uses the event to update the in-memory data store. Operations on
+ * This handler uses the transaction to update the in-memory data store. Operations on
  * this store always happen in a single thread, so concurrency issues are non-
  * existent for these updates.
  */
